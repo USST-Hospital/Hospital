@@ -19,6 +19,28 @@
         $(document).ready(function () {
             $('#login').click(function () {
                 alert('test login');
+                var account = $('#account').val();
+                var password = $('#password').val();
+                var power = $('[name="power"]:checked').val();
+                if(account!=''&&password!='') {
+                    $.post("login.do",{'account':account,'password':password,'power':power},function (data,status) {
+                        if(data=='success'&&status=='success') {
+                            if(power=='doctor') {
+                                window.location.href('doctor/doctor.do');
+                            }else if(power=='analgesist') {
+                                window.location.href('analgesist/analgesist.do');
+                            }else if(power=='nurse') {
+                                window.location.href('nurse/nurse.do');
+                            }else if(power=='admin') {
+                                window.location.href('admin/admin.do');
+                            }
+                        }else{
+                           alert('账号或密码错误！')
+                        }
+                    })
+                }else {
+                    alert('账号或密码错误！');
+                }
             });
         })
     </script>
@@ -41,16 +63,16 @@
             <div>
 
                 <h4> <label class="control-label">账号：</label></h4>
-                <input type="text" class="form-control" name="account"  placeholder="Account"><br>
+                <input type="text" class="form-control" id="account"  placeholder="Account"><br>
                 <h4> <label class="control-label">密码：</label></h4>
-                <input type="password" class="form-control" name="password" placeholder="Password">
+                <input type="password" class="form-control" id="password" placeholder="Password">
                 <br> <input type="radio" name="power" value="doctor" checked="checked"> 医生&nbsp;
                 <input type="radio" name="power" value="analgesist"> 麻醉师&nbsp;
                 <input  type="radio" name="power" value="nurse"> 护士&nbsp;
                 <input  type="radio" name="power" value="admin"> 管理员
                 <br> <br>
 
-                <button type="button" class="btn btn-primary" id="loginX">登录</button>
+                <button type="button" class="btn btn-primary" id="login">登录</button>
                 <!-- <input type="submit" value="登录"> -->
             </div>
 
