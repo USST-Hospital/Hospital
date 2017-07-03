@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.usst.dao.NurseScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.usst.model.NurseSchedule" >
+    <result column="operation_id" property="operationId" jdbcType="INTEGER" />
+    <result column="nurse_id" property="nurseId" jdbcType="INTEGER" />
+    <result column="nurse_status" property="nurseStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.usst.model.NurseSchedule" >
+    insert into nurse_schedule (operation_id, nurse_id, nurse_status
+      )
+    values (#{operationId,jdbcType=INTEGER}, #{nurseId,jdbcType=INTEGER}, #{nurseStatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.usst.model.NurseSchedule" >
+    insert into nurse_schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="operationId != null" >
+        operation_id,
+      </if>
+      <if test="nurseId != null" >
+        nurse_id,
+      </if>
+      <if test="nurseStatus != null" >
+        nurse_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="operationId != null" >
+        #{operationId,jdbcType=INTEGER},
+      </if>
+      <if test="nurseId != null" >
+        #{nurseId,jdbcType=INTEGER},
+      </if>
+      <if test="nurseStatus != null" >
+        #{nurseStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
