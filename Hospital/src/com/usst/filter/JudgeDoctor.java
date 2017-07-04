@@ -1,5 +1,8 @@
 package com.usst.filter;
 
+import com.usst.dao.DoctorMapper;
+
+import javax.annotation.Resource;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -11,14 +14,14 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "JudgeDoctor",urlPatterns ="/doctor/*")
 public class JudgeDoctor implements Filter {
+
     public void destroy() {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        System.out.println("jin guo lv qi");
         HttpServletResponse response =(HttpServletResponse)resp;
         HttpServletRequest request= (HttpServletRequest) req;
-       /* try {
+        try {
             String power = request.getSession().getAttribute("power").toString();
             if (!"doctor".equals(power)) {
                 response.sendRedirect("/Hospital/index.jsp");
@@ -28,7 +31,7 @@ public class JudgeDoctor implements Filter {
             //e.printStackTrace();
             response.sendRedirect("/Hospital/index.jsp");
             return;
-        }*/
+        }
         chain.doFilter(req, resp);
     }
 

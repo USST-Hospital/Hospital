@@ -5,6 +5,11 @@ public class OperationRoom {
 
     private String location;
 
+    public OperationRoom(Integer id, String location) {
+        this.id = id;
+        this.location = location;
+    }
+
     public Integer getId() {
         return id;
     }

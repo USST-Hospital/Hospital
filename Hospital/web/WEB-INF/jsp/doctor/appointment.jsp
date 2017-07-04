@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" >
                 <label class="col-sm-3 control-label">医生</label>
                 <div class="col-sm-6">
                     <input id="doctor" doctor-id="${ doctorId}" class="form-control" value="${ appointmentDoctor}" disabled>

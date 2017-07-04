@@ -90,4 +90,9 @@
       number = #{number,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getAllPatient" resultMap="BaseResultMap">
+    SELECT * FROM patient
+  </select>
+
 </mapper>

@@ -62,7 +62,17 @@
     (
       SELECT operation_room_id FROM operation WHERE date =#{date} AND start_time &lt; #{endTime} AND end_time &gt; #{startTime}
     )
+  </select>
 
+  <select id="ChangeOperationGetOperationRoom" resultMap="BaseResultMap" parameterType="com.usst.model.Operation">
+    SELECT * from operation_room WHERE id NOT IN
+      (
+        SELECT operation_room_id FROM operation WHERE date =#{date} AND start_time &lt; #{endTime} AND end_time &gt; #{startTime} AND operation.id!=#{id}
+      )
+  </select>
+
+  <select id="getAllOperationRoom" resultMap="BaseResultMap">
+    SELECT * FROM operation_room
   </select>
 
 </mapper>

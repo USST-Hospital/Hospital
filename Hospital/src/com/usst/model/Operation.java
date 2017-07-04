@@ -4,6 +4,16 @@ import java.util.List;
 
 public class Operation {
 
+    private int nurseId;
+
+    public int getNurseId() {
+        return nurseId;
+    }
+
+    public void setNurseId(int nurseId) {
+        this.nurseId = nurseId;
+    }
+
     public OperationRoom getOperationRoom() {
         return operationRoom;
     }

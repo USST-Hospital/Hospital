@@ -50,4 +50,15 @@ public class Patient {
     public void setNumber(String number) {
         this.number = number == null ? null : number.trim();
     }
+
+    public Patient(Integer id, String name, String gender, Integer age, String number) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.number = number;
+    }
+
+    public Patient() {
+    }
 }

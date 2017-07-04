@@ -52,7 +52,6 @@
                     <td>${ doctorInfo.number }</td>
                 </tr>
             </table>
-            <button type="button" class="btn btn-info">返回</button>
         </div>
     </div>
 </div>

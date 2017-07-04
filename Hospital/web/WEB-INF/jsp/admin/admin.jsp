@@ -21,6 +21,15 @@
             $('#doctorMenu').click(function () {
                 $('#adminNurse').hide();
                 $('#adminDoctor').show();
+                $('#adminPatient').hide();
+                $('#adminAnalgesist').hide();
+                $('#adminOperation').hide();
+                $('#adminOperationRoom').hide();
+            });
+            $('#patientMenu').click(function () {
+                $('#adminNurse').hide();
+                $('#adminDoctor').hide();
+                $('#adminPatient').show();
                 $('#adminAnalgesist').hide();
                 $('#adminOperation').hide();
                 $('#adminOperationRoom').hide();
@@ -31,6 +40,7 @@
                 $('#adminDoctor').hide();
                 $('#adminAnalgesist').hide();
                 $('#adminOperation').hide();
+                $('#adminPatient').hide();
                 $('#adminOperationRoom').hide();
             });
 
@@ -38,6 +48,7 @@
                 $('#adminNurse').hide();
                 $('#adminDoctor').hide();
                 $('#adminAnalgesist').show();
+                $('#adminPatient').hide();
                 $('#adminOperation').hide();
                 $('#adminOperationRoom').hide();
             });
@@ -46,6 +57,7 @@
                 $('#adminNurse').hide();
                 $('#adminDoctor').hide();
                 $('#adminAnalgesist').hide();
+                $('#adminPatient').hide();
                 $('#adminOperation').show();
                 $('#adminOperationRoom').hide();
             });
@@ -56,6 +68,7 @@
                 $('#adminAnalgesist').hide();
                 $('#adminOperation').hide();
                 $('#adminOperationRoom').show();
+                $('#adminPatient').hide();
             });
         })
 
@@ -79,11 +92,13 @@
             <div >
 
                 <ul class="nav nav-pills ">
-                    <li><a href="#" id="doctorMenu">医生信息管理</a></li>
-                    <li><a href="#" id="nurseMenu">护士信息管理</a></li>
-                    <li><a href="#" id="analgesistMenu">麻醉师信息管理</a></li>
-                    <li><a href="#" id="operationRoomMenu">手术室管理</a></li>
-                    <li><a href="#" id="operationMenu">手术管理</a></li>
+                    <li><a href="doctor/all_doctor.do" id="doctorMenu" target="adminIframe">医生信息管理</a></li>
+                    <li><a href="nurse/all_nurse.do" id="nurseMenu" target="adminIframe">护士信息管理</a></li>
+                    <li><a href="analgesist/all_analgesist.do" id="analgesistMenu" target="adminIframe">麻醉师信息管理</a></li>
+                    <li><a href="operation_room/all_operation_room.do" id="operationRoomMenu" target="adminIframe">手术室管理</a></li>
+                    <li><a href="operation/all_operation.do" id="operationMenu" target="adminIframe">手术管理</a></li>
+                    <li><a href="patient/all_patient.do" id="patientMenu" target="adminIframe">病人管理</a></li>
+                    <li><a href="${pageContext.request.contextPath}/logout.do" >退出登录</a></li>
                 </ul>
             </div>
 
@@ -97,13 +112,28 @@
                 <ul class="nav nav-pills">
                     <li><a href="doctor/all_doctor.do" target="adminIframe" >查看医生信息</a></li>
                     <li><a href="doctor/add_doctor.do" target="adminIframe" >添加医生</a></li>
-                    <li><a href="appointment.do" target="adminIframe" >手术预约</a></li>
-                    <li><a href="search_patient.do" target="adminIframe" >查看病人信息</a></li>
-                    <li><a href="history.do" target="adminIframe">手术历史</a></li>
+                 <!--    <li><a href="admin/appointment.do" target="adminIframe" >手术预约</a></li>
+                    <li><a href="admin/search_patient.do" target="adminIframe" >查看病人信息</a></li>
+                    <li><a href="admin/history.do" target="adminIframe">手术历史</a></li> -->
                 </ul>
             </div>
         </div>
     </div>
+      <div class="row" id="adminPatient" style="display: none;">
+        <div class="col-md-12 " >
+            <div >
+
+                <ul class="nav nav-pills">
+                    <li><a href="patient/all_patient.do" target="adminIframe" >查看病人信息</a></li>
+                    <li><a href="patient/add_patient.do" target="adminIframe" >添加病人</a></li>
+                 <!--    <li><a href="admin/appointment.do" target="adminIframe" >手术预约</a></li>
+                    <li><a href="admin/search_patient.do" target="adminIframe" >查看病人信息</a></li>
+                    <li><a href="admin/history.do" target="adminIframe">手术历史</a></li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    
 
 
 
@@ -112,11 +142,11 @@
             <div >
 
                 <ul class="nav nav-tabs ">
-                    <li><a href="doctor/all_doctor.do" target="adminIframe">护士</a></li>
-                    <li><a href="schedule.do" target="adminIframe">查看手术排班</a></li>
-                    <li><a href="appointment.do" target="adminIframe">手术预约</a></li>
-                    <li><a href="search_patient.do" target="adminIframe">查看病人信息</a></li>
-                    <li><a href="history.do" target="adminIframe">手术历史</a></li>
+                    <li><a href="nurse/all_nurse.do" target="adminIframe">查看护士信息</a></li>
+                    <li><a href="nurse/add_nurse.do" target="adminIframe">添加护士</a></li>
+                    <!-- <li><a href="admin/appointment.do" target="adminIframe">手术预约</a></li>
+                    <li><a href="admin/search_patient.do" target="adminIframe">查看病人信息</a></li>
+                    <li><a href="admin/history.do" target="adminIframe">手术历史</a></li> -->
                 </ul>
             </div>
         </div>
@@ -128,11 +158,11 @@
             <div >
 
                 <ul class="nav nav-tabs ">
-                    <li><a href="doctor/all_doctor.do" target="adminIframe">麻醉师</a></li>
-                    <li><a href="schedule.do" target="adminIframe">查看手术排班</a></li>
-                    <li><a href="appointment.do" target="adminIframe">手术预约</a></li>
-                    <li><a href="search_patient.do" target="adminIframe">查看病人信息</a></li>
-                    <li><a href="history.do" target="adminIframe">手术历史</a></li>
+                    <li><a href="analgesist/all_analgesist.do" target="adminIframe">查看麻醉师信息</a></li>
+                    <li><a href="analgesist/add_analgesist.do" target="adminIframe">添加麻醉师</a></li>
+                  <!--   <li><a href="admin/appointment.do" target="adminIframe">手术预约</a></li>
+                    <li><a href="admin/search_patient.do" target="adminIframe">查看病人信息</a></li>
+                    <li><a href="admin/history.do" target="adminIframe">手术历史</a></li> -->
                 </ul>
             </div>
         </div>
@@ -144,11 +174,11 @@
             <div >
 
                 <ul class="nav nav-tabs ">
-                    <li><a href="doctor/all_doctor.do" target="adminIframe">手术</a></li>
-                    <li><a href="schedule.do" target="adminIframe">查看手术排班</a></li>
-                    <li><a href="appointment.do" target="adminIframe">手术预约</a></li>
-                    <li><a href="search_patient.do" target="adminIframe">查看病人信息</a></li>
-                    <li><a href="history.do" target="adminIframe">手术历史</a></li>
+                    <li><a href="operation/all_operation.do" target="adminIframe">查看手术信息</a></li>
+                    <li><a href="operation/add_operation.do" target="adminIframe">添加手术信息</a></li>
+                   <!--  <li><a href="admin/appointment.do" target="adminIframe">手术预约</a></li>
+                    <li><a href="admin/search_patient.do" target="adminIframe">查看病人信息</a></li>
+                    <li><a href="admin/history.do" target="adminIframe">手术历史</a></li> -->
                 </ul>
             </div>
         </div>
@@ -160,11 +190,11 @@
             <div >
 
                 <ul class="nav nav-tabs ">
-                    <li><a href="doctor/all_doctor.do" target="adminIframe">手术室</a></li>
-                    <li><a href="schedule.do" target="adminIframe">查看手术排班</a></li>
-                    <li><a href="appointment.do" target="adminIframe">手术预约</a></li>
-                    <li><a href="search_patient.do" target="adminIframe">查看病人信息</a></li>
-                    <li><a href="history.do" target="adminIframe">手术历史</a></li>
+                    <li><a href="operation_room/all_operation_room.do" target="adminIframe">查看手术室信息</a></li>
+                    <li><a href="operation_room/add_operation_room.do" target="adminIframe">添加手术手术室</a></li>
+                    <!-- <li><a href="admin/appointment.do" target="adminIframe">手术预约</a></li>
+                    <li><a href="admin/search_patient.do" target="adminIframe">查看病人信息</a></li>
+                    <li><a href="admin/history.do" target="adminIframe">手术历史</a></li> -->
                 </ul>
             </div>
         </div>

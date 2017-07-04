@@ -2,6 +2,7 @@ package com.usst.service;
 
 import com.usst.model.Doctor;
 import com.usst.model.Operation;
+import com.usst.model.Patient;
 import net.sf.json.JSONObject;
 
 import java.util.List;
@@ -25,4 +26,10 @@ public interface DoctorPageService {
     public List<Operation> getSchedule(int doctorId);
 
     public List<Operation> getHistory(int doctorId);
+
+    public Patient getPatientInfo(int account);
+
+    public List<Operation> getPatientSchedule(int account);
+
+    public boolean finish(int operationId);
 }

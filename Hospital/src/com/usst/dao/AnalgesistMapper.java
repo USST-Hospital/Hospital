@@ -19,4 +19,8 @@ public interface AnalgesistMapper {
     int updateByPrimaryKey(Analgesist record);
 
     List<Analgesist> appointmentGetAnalgesist(Operation operation);
+
+    List<Analgesist> changeOperationGetAnalgesist(Operation operation);
+
+    List<Analgesist> getAllAnalgesist();
 }

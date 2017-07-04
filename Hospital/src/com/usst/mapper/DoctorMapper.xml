@@ -8,6 +8,16 @@
     <result column="age" property="age" jdbcType="INTEGER" />
     <result column="number" property="number" jdbcType="VARCHAR" />
   </resultMap>
+
+  <resultMap id="MyResultMap"  type="com.usst.model.Doctor">
+    <id column="id" property="id"  />
+    <result column="name" property="name"/>
+    <result column="gender" property="gender" />
+    <result column="age" property="age"  />
+    <result column="number" property="number" />
+    <result column="password" property="password"/>
+  </resultMap>
+
   <sql id="Base_Column_List" >
     id, name, gender, age, number
   </sql>
@@ -91,7 +101,25 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="getAllDoctor" resultMap="BaseResultMap">
-    SELECT * FROM doctor
+
+
+  <select id="appointmentGetDoctor" parameterType="com.usst.model.Operation" resultMap="BaseResultMap">
+    SELECT * from doctor WHERE id NOT IN
+    (
+    SELECT doctor_id FROM operation WHERE date =#{date} AND start_time &lt; #{endTime} AND end_time &gt; #{startTime}
+    )
   </select>
+
+
+  <select id="changeOperationGetDoctor" parameterType="com.usst.model.Operation" resultMap="BaseResultMap">
+    SELECT * from doctor WHERE id NOT IN
+     (
+      SELECT doctor_id FROM operation WHERE date =#{date} AND start_time &lt; #{endTime} AND end_time &gt; #{startTime} AND operation.id!=#{id}
+     )
+  </select>
+
+  <select id="getAllDoctor" resultMap="MyResultMap">
+    SELECT * FROM doctor,account WHERE id=account
+  </select>
+
 </mapper>

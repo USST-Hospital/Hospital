@@ -16,6 +16,15 @@
     <script src="${pageContext.request.contextPath}/javascript/myJavaScript.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 
+    <%--<script>--%>
+        <%--$(document).ready(function () {--%>
+            <%--$('#doctorLogout').click(function () {--%>
+                <%--$.post('logout.do');--%>
+                <%--window.location.href = '/Hospital/index.jsp';--%>
+            <%--});--%>
+        <%--});--%>
+    <%--</script>--%>
+
     <title>Doctor</title>
 
 </head>
@@ -25,7 +34,6 @@
 
 
     <jsp:include page="../common/top_menu.jsp"></jsp:include>
-    <%--<iframe src="common/top_menu.do"></iframe>--%>
 
 
     <div class="row">
@@ -38,7 +46,7 @@
                     <li><a href="appointment.do" target="doctorIframe">手术预约</a></li>
                     <li><a href="search_patient.do" target="doctorIframe">查看病人信息</a></li>
                     <li><a href="history.do" target="doctorIframe">手术历史</a></li>
-                    <li><a href="history.do" target="doctorIframe">退出登录</a></li>
+                    <li><a href="${pageContext.request.contextPath}/logout.do" >退出登录</a></li>
                 </ul>
             </div>
 
@@ -47,10 +55,7 @@
 
     <div class="row">
         <div class="col-md-12">
-
             <iframe id="myIframe" class="myContent" src="information.do" name="doctorIframe">
-
-
             </iframe>
         </div>
     </div>

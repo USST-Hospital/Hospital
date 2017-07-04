@@ -19,6 +19,24 @@
     <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/javascript/myJavaScript.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+
+    <script>
+        function finish(id) {
+            var sure = confirm('确认完成手术？');
+            if(sure==true) {
+                $.post("finish.do", {'operationId': id}, function (data, status) {
+                    if(data=='success'&&status=='success') {
+                        window.location.reload();
+                    }else {
+                        alert('确认失败！')
+                    }
+                })
+            }else {
+                return;
+            }
+        }
+    </script>
+
 </head>
 <body>
 
@@ -53,6 +71,9 @@
                 <th>
                     病人
                 </th>
+                <th>
+                    操作
+                </th>
             </tr>
             <c:forEach var="operation" items="${ requestScope.operations }">
                 <tr>
@@ -64,10 +85,10 @@
                     <td>${ operation.analgesist.name }</td>
                     <td>${ operation.showNurses }</td>
                     <td>${ operation.patient.name }</td>
+                    <td><button type="button" class="btn btn-info" onclick="finish(${operation.id})">确定完成</button></td>
                 </tr>
             </c:forEach>
         </table>
-        <button type="button" class="btn btn-info">返回</button>
     </div>
 </div>
 

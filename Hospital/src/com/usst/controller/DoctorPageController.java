@@ -2,6 +2,7 @@ package com.usst.controller;
 
 import com.usst.model.Doctor;
 import com.usst.model.Operation;
+import com.usst.model.Patient;
 import com.usst.service.DoctorPageService;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -31,47 +32,42 @@ public class DoctorPageController {
     }
 
 
-
     @RequestMapping("/information")
     public ModelAndView information(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("doctor/information");
         System.out.println("controller info");
-       // int id = Integer.parseInt(request.getSession().getAttribute("id").toString());
-        mav.addObject("doctorInfo",doctorPageService.getDoctorInfoById(1001));
+        int account = Integer.parseInt(request.getSession().getAttribute("account").toString());
+        mav.addObject("doctorInfo",doctorPageService.getDoctorInfoById(account));
         return mav;
     }
 
-    @RequestMapping("/test")
-    public String test() {
-
-     //   doctorService.addDoctor(new Doctor(1,"hello"));
-        return "test";
-    }
-
-    @RequestMapping("history")
-    public ModelAndView history() {
+    @RequestMapping("/history")
+    public ModelAndView history(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("doctor/history");
-        List<Operation> operations = doctorPageService.getHistory(1001);
+        int account = Integer.parseInt(request.getSession().getAttribute("account").toString());
+        List<Operation> operations = doctorPageService.getHistory(account);
         mav.addObject("operations", operations);
         return mav;
     }
 
     @RequestMapping("/schedule")
-    public ModelAndView schedule() {
+    public ModelAndView schedule(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("doctor/schedule");
-        List<Operation> operations = doctorPageService.getSchedule(1001);
+        int account = Integer.parseInt(request.getSession().getAttribute("account").toString());
+        List<Operation> operations = doctorPageService.getSchedule(account);
         mav.addObject("operations", operations);
         return mav;
     }
 
-    @RequestMapping("appointment")
-    public ModelAndView appointment() {
+    @RequestMapping("/appointment")
+    public ModelAndView appointment(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("doctor/appointment");
-        Doctor doctor=doctorPageService.getDoctorInfoById(1001);
+        int account = Integer.parseInt(request.getSession().getAttribute("account").toString());
+        Doctor doctor=doctorPageService.getDoctorInfoById(account);
         mav.addObject("appointmentDoctor",doctor.getId()+"  "+doctor.getName());
         mav.addObject("doctorId", doctor.getId());
         return mav;
@@ -94,14 +90,12 @@ public class DoctorPageController {
     @RequestMapping("/judgeDoctorTime")
     public void judgeDoctorTime(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out=response.getWriter();
-        System.out.println("endtimejin");
         try {
-            //int doctorId = Integer.parseInt(request.getSession().getAttribute("account").toString());
-            int doctorId=1001;
+            int account = Integer.parseInt(request.getSession().getAttribute("account").toString());
             String date = request.getParameter("date");
             int startTime = Integer.parseInt(request.getParameter("startTime"));
             int endTime = Integer.parseInt(request.getParameter("endTime"));
-            if(doctorPageService.judgeDoctorTime(doctorId,date,startTime,endTime)){
+            if(doctorPageService.judgeDoctorTime(account,date,startTime,endTime)){
                 System.out.println("true");
                 out.print("success");
             }else {
@@ -145,6 +139,55 @@ public class DoctorPageController {
                 out.print("failure");
             }
         } catch (Exception e) {
+            out.print("failure");
+        } finally {
+            out.close();
+        }
+    }
+
+    @RequestMapping("patient_info")
+    public ModelAndView patient_info(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("doctor/patient_info");
+        try {
+            int account = Integer.parseInt(request.getParameter("patientId"));
+            Patient patient = doctorPageService.getPatientInfo(account);
+            List<Operation> operations = doctorPageService.getPatientSchedule(account);
+            mav.addObject("patient", patient);
+            mav.addObject("operations", operations);
+            if (patient != null) {
+                mav.addObject("status", "success");
+            }else {
+                mav.addObject("status", "failure");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            mav.addObject("status", "failure");
+        }
+        return mav;
+    }
+
+    @RequestMapping("search_patient")
+    public ModelAndView search_patient(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("doctor/search_patient");
+        return mav;
+    }
+
+
+    @RequestMapping("finish")
+    public void finish(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        PrintWriter out=response.getWriter();
+        try {
+            int operationId  = Integer.parseInt(request.getParameter("operationId"));
+            System.out.println("sdfsdf"+operationId);
+            if (doctorPageService.finish(operationId)) {
+                out.print("success");
+            }else {
+                out.print("failure");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
             out.print("failure");
         } finally {
             out.close();

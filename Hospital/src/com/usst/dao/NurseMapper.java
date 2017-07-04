@@ -21,4 +21,8 @@ public interface NurseMapper {
     List<Nurse> appointmentGetNurse(Operation operation);
 
     List<Nurse> selectByOperationId(int operationId);
+
+    List<Nurse> changeOperationGetNurse(Operation operation);
+
+    List<Nurse> getAllNurse();
 }

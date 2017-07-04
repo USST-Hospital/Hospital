@@ -20,4 +20,8 @@ public interface OperationRoomMapper {
     int updateByPrimaryKey(OperationRoom record);
 
     List<OperationRoom> appointmentGetOperationRoom(Operation operation);
+
+    List<OperationRoom> ChangeOperationGetOperationRoom(Operation operation);
+
+    List<OperationRoom> getAllOperationRoom();
 }

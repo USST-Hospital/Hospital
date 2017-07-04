@@ -17,8 +17,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap-theme.min.css"/>
     <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.js"></script>
-    <script src="${pageContext.request.contextPath}/javascript/myJavaScript.js"></script>
+    <script src="${pageContext.request.contextPath}/javascript/admin.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+    <script>
+        $(window.parent.document).find("#myIframe").load(function(){
+            var main = $(window.parent.document).find("#myIframe");
+            var thisheight = $(document).height()+30;
+            main.height(thisheight);
+        });
+    </script>
 </head>
 <body>
 
@@ -45,24 +52,28 @@
                     号码
                 </th>
                 <th>
-
+		密码
                 </th>
 
             </tr>
-            <%--<c:forEach var="doctor" items="${ requestScope.doctors }">--%>
-                <tr>
-                    <td>${ doctor.id }</td>
-                    <td>${ doctor.name }</td>
-                    <td>${ doctor.gender }</td>
-                    <td>${ doctor.age }</td>
-                    <td>${ doctor.number }</td>
-                    <td style="width: 130px;">  <button onclick="delete(${doctor.id})"  class="btn btn-info">删除</button>&nbsp;&nbsp;
-                        <button onclick="update(${doctor.id})"  class="btn btn-info">修改</button></td>
+            <c:forEach var="doctor" items="${ requestScope.doctors }"> 
+                <tr id="${doctor.id }">
+                <td> <input  class="form-control" value="${ doctor.id }" disabled></td>
+                <td> <input  class="form-control" value="${ doctor.name }" disabled></td>
+                <td> <input  class="form-control" value="${ doctor.gender }" disabled></td>
+                <td> <input  class="form-control" value="${ doctor.age }" disabled></td>
+                <td> <input  class="form-control" value="${ doctor.number }" disabled></td>
+                <td> <input  class="form-control" value="${ doctor.password }" disabled></td>
+                <td style="width: 130px;">  <button onclick="deletdoctor(${doctor.id})"  class="btn btn-info" id="del${ doctor.id }">删除</button>&nbsp;&nbsp;
+                       <button onclick="updatedoctor(${doctor.id})"  class="btn btn-info" id="updata${ doctor.id }">修改</button>
+                       <button onclick="savedoctor(${doctor.id})" style="display:none" class="btn btn-info" id="save${ doctor.id }">保存</button>
+                       
+                       </td>
 
                 </tr>
-            <%--</c:forEach>--%>
+            </c:forEach>
         </table>
-        <button type="button" class="btn btn-info">返回</button>
+       
     </div>
 </div>
 

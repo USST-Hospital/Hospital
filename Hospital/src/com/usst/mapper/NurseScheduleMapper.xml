@@ -37,4 +37,8 @@
       </if>
     </trim>
   </insert>
+
+  <delete id="deleteByOperationId" parameterType="int">
+    DELETE FROM nurse_schedule where operation_id=#{operationId}
+  </delete>
 </mapper>

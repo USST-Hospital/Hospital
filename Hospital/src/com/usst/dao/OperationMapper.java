@@ -22,7 +22,9 @@ public interface OperationMapper {
 
     int getMaxId();
 
-    List<Operation> doctorGetSchedule(int doctorId);
+    List<Operation> getSchedule(Operation operation);
 
-    List<Operation> doctorGetHistory(int doctorId);
+    List<Operation> getHistory(Operation operation);
+
+    List<Operation> getAllOperation();
 }

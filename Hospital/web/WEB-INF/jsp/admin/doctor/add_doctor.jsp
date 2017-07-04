@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap-theme.min.css"/>
     <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.js"></script>
-    <script src="${pageContext.request.contextPath}/javascript/myJavaScript.js"></script>
+    <%-- <script src="${pageContext.request.contextPath}/javascript/myJavaScript.js"></script> --%>
+    <script src="${pageContext.request.contextPath}/javascript/admin.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 
     <script>
@@ -44,14 +45,14 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">医生工号</label>
                     <div class="col-sm-9">
-                        <input class="form-control" name="name" placeholder="name">
+                        <input class="form-control" id="id" placeholder="id">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">姓名</label>
                     <div class="col-sm-9">
-                        <input class="form-control" name="name" placeholder="patientID">
+                        <input class="form-control" id="name" placeholder="name">
                     </div>
                 </div>
 
@@ -59,34 +60,34 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">性别</label>
                     <div class="col-sm-9">
-                        <input class="form-control" name="name" placeholder="patientID">
+                        <input class="form-control" id="sex" placeholder="sex">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">年龄</label>
                     <div class="col-sm-9">
-                        <input class="form-control" name="name" placeholder="name">
+                        <input class="form-control" id="age" placeholder="age">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">号码</label>
                     <div class="col-sm-9">
-                        <input class="form-control" name="name" placeholder="name">
+                        <input class="form-control" id="number" placeholder="number">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">密码</label>
                     <div class="col-sm-9">
-                        <input class="form-control" name="name" placeholder="name">
+                        <input class="form-control" id="password" placeholder="password">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-offset-6 col-sm-6">
-                        <button type="button" class="btn btn-success">确定</button>
+                        <button type="button" class="btn btn-success"  onclick="addDoctor()">确定</button>
                     </div>
                 </div>
 

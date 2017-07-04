@@ -3,6 +3,7 @@ package com.usst.service.impl;
 import com.usst.dao.*;
 import com.usst.model.*;
 import com.usst.service.DoctorPageService;
+import jdk.nashorn.internal.runtime.regexp.joni.constants.OPCode;
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -72,11 +73,13 @@ public class DoctorPageServiceImpl implements DoctorPageService {
         List<OperationRoom> operationRooms = operationRoomMapper.appointmentGetOperationRoom(operation);
         List<Analgesist> analgesists = analgesistMapper.appointmentGetAnalgesist(operation);
         List<Nurse> nurses = nurseMapper.appointmentGetNurse(operation);
+        List<Doctor> doctors = doctorMapper.appointmentGetDoctor(operation);
 
         JSONObject resultJSON = new JSONObject();
         JSONArray operationRoomResult = new JSONArray();
         JSONArray analgesistResult = new JSONArray();
         JSONArray nurseResult = new JSONArray();
+        JSONArray doctorResult =new JSONArray();
 
         for (OperationRoom operationRoom : operationRooms) {
             JSONObject jsonObject = new JSONObject();
@@ -84,7 +87,6 @@ public class DoctorPageServiceImpl implements DoctorPageService {
             jsonObject.put("location", operationRoom.getLocation());
             operationRoomResult.add(jsonObject);
         }
-
 
         for (Analgesist analgesist : analgesists) {
             JSONObject jsonObject = new JSONObject();
@@ -100,9 +102,18 @@ public class DoctorPageServiceImpl implements DoctorPageService {
             nurseResult.add(jsonObject);
         }
 
+        for (Doctor doctor : doctors) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("id",doctor.getId());
+            jsonObject.put("name", doctor.getName());
+            doctorResult.add(jsonObject);
+        }
+
+
         resultJSON.put("operationRooms", operationRoomResult);
         resultJSON.put("analgesists", analgesistResult);
         resultJSON.put("nurses", nurseResult);
+        resultJSON.put("doctors", doctorResult);
         return resultJSON;
     }
 
@@ -139,11 +150,39 @@ public class DoctorPageServiceImpl implements DoctorPageService {
 
     @Override
     public List<Operation> getSchedule(int doctorId) {
-        return operationMapper.doctorGetSchedule(doctorId);
+        Operation operation =new Operation();
+        operation.setDoctorId(doctorId);
+        return operationMapper.getSchedule(operation);
     }
 
     @Override
     public List<Operation> getHistory(int doctorId) {
-        return operationMapper.doctorGetHistory(doctorId);
+        Operation operation=new Operation();
+        operation.setDoctorId(doctorId);
+        return operationMapper.getHistory(operation);
+    }
+
+    @Override
+    public Patient getPatientInfo(int account) {
+        return patientMapper.selectByPrimaryKey(account);
+    }
+
+    @Override
+    public List<Operation> getPatientSchedule(int account) {
+        Operation operation=new Operation();
+        operation.setPatientId(account);
+        return operationMapper.getSchedule(operation);
+    }
+
+    @Override
+    public boolean finish(int operationId) {
+        Operation operation=new Operation();
+        operation.setId(operationId);
+        operation.setStatus(1);
+        if (operationMapper.updateByPrimaryKeySelective(operation)>0) {
+            return true;
+        }else {
+            return false;
+        }
     }
 }

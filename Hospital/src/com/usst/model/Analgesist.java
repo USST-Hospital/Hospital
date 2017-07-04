@@ -1,6 +1,29 @@
 package com.usst.model;
 
 public class Analgesist {
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    private String password;
+
+    public Analgesist( Integer id, String name, String gender, Integer age, String number,String password) {
+        this.password = password;
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.number = number;
+    }
+
+    public Analgesist() {
+    }
+
     private Integer id;
 
     private String name;
@@ -49,5 +72,13 @@ public class Analgesist {
 
     public void setNumber(String number) {
         this.number = number == null ? null : number.trim();
+    }
+
+    public Analgesist(Integer id, String name, String gender, Integer age, String number) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.number = number;
     }
 }
