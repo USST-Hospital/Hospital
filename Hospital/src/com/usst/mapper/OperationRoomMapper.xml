@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.usst.dao.OperationRoomMapper" >
+  <resultMap id="BaseResultMap" type="com.usst.model.OperationRoom" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, location
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from operation_room
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from operation_room
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.usst.model.OperationRoom" >
+    insert into operation_room (id, location)
+    values (#{id,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.usst.model.OperationRoom" >
+    insert into operation_room
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.usst.model.OperationRoom" >
+    update operation_room
+    <set >
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.usst.model.OperationRoom" >
+    update operation_room
+    set location = #{location,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="appointmentGetOperationRoom" resultMap="BaseResultMap" parameterType="com.usst.model.Operation">
+    SELECT * from operation_room WHERE id NOT IN
+    (
+      SELECT operation_room_id FROM operation WHERE date =#{date} AND start_time &lt; #{endTime} AND end_time &gt; #{startTime}
+    )
+  </select>
+
+  <select id="ChangeOperationGetOperationRoom" resultMap="BaseResultMap" parameterType="com.usst.model.Operation">
+    SELECT * from operation_room WHERE id NOT IN
+      (
+        SELECT operation_room_id FROM operation WHERE date =#{date} AND start_time &lt; #{endTime} AND end_time &gt; #{startTime} AND operation.id!=#{id}
+      )
+  </select>
+
+  <select id="getAllOperationRoom" resultMap="BaseResultMap">
+    SELECT * FROM operation_room
+  </select>
+
+</mapper>
