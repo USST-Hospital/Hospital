@@ -34,7 +34,7 @@
 
 <div>
     <div class="myTitle">
-        添加病人
+        添加手术室
     </div>
 
 
@@ -43,46 +43,23 @@
             <div class="form-horizontal">
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">病人编号</label>
-                    <div class="col-sm-9"> 
+                    <label class="col-sm-3 control-label">手术室编号</label>
+                    <div class="col-sm-9">
                         <input class="form-control" id="id" placeholder="id" onblur="Isnumber(this)"><label></label>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">姓名</label>
+                    <label class="col-sm-3 control-label">手术室地址</label>
                     <div class="col-sm-9">
-                        <input class="form-control" id="name" placeholder="name" onblur="Isnull(this)"><label></label>
+                        <input class="form-control" id="location" placeholder="name" onblur="Isnull(this)"><label></label>
                     </div>
                 </div>
 
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">性别</label>
-                    <div class="col-sm-9">
-                        <input class="form-control" id="sex" placeholder="sex"  onblur="Isnull(this)"><label></label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">年龄</label>
-                    <div class="col-sm-9">
-                        <input class="form-control" id="age" placeholder="age" onblur="Isnumber(this)"><label></label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">号码</label>
-                    <div class="col-sm-9">
-                        <input class="form-control" id="number" placeholder="number" onblur="Isnumber(this)"><label></label>
-                    </div>
-                </div>
-
-             
 
                 <div class="form-group">
                     <div class="col-sm-offset-6 col-sm-6">
-                        <button type="button" class="btn btn-success"  onclick="addPatient()">确定</button>
+                        <button type="button" class="btn btn-success"  onclick="addOperationRoom()">确定</button>
                     </div>
                 </div>
 

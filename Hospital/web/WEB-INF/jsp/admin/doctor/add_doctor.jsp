@@ -12,7 +12,6 @@
 <html>
 <head>
     <title>Title</title>
-
     <script src="${pageContext.request.contextPath}/bootstrap3/js/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap-theme.min.css"/>
@@ -45,50 +44,63 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">医生工号</label>
                     <div class="col-sm-9">
-                        <input class="form-control" id="id" placeholder="id">
+                        <input class="form-control" id="id" placeholder="id" onblur="Isnumber(this)"  >
+                        <label ></label>
                     </div>
+                     
+                  
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">姓名</label>
                     <div class="col-sm-9">
-                        <input class="form-control" id="name" placeholder="name">
+                        <input class="form-control" id="name" placeholder="name" onblur="Isnull(this)">
+                    	<label></label>
                     </div>
+                    
                 </div>
 
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">性别</label>
                     <div class="col-sm-9">
-                        <input class="form-control" id="sex" placeholder="sex">
+                        <input class="form-control" id="sex" placeholder="sex" onblur="Isnull(this)">
+                        <label></label>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">年龄</label>
                     <div class="col-sm-9">
-                        <input class="form-control" id="age" placeholder="age">
+                        <input class="form-control" id="age" placeholder="age" onblur="Isnumber(this)">
+                        <label></label>
                     </div>
+                    
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">号码</label>
                     <div class="col-sm-9">
-                        <input class="form-control" id="number" placeholder="number">
+                        <input class="form-control" id="number" placeholder="number" onblur="Isnumber(this)">
+                        <label></label>
                     </div>
+                    
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">密码</label>
                     <div class="col-sm-9">
-                        <input class="form-control" id="password" placeholder="password">
+                        <input class="form-control" id="password" placeholder="password" onblur="Isnull(this)">
+                        <label></label>
                     </div>
+                     
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-offset-6 col-sm-6">
                         <button type="button" class="btn btn-success"  onclick="addDoctor()">确定</button>
                     </div>
+                    
                 </div>
 
             </div>
