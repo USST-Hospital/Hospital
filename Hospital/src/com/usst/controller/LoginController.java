@@ -1,5 +1,6 @@
 package com.usst.controller;
 
+import com.sun.deploy.net.HttpResponse;
 import com.usst.service.LoginPageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.spec.ECField;
 
 /**
  * Created by 28444 on 2017/6/29.
@@ -61,4 +63,44 @@ public class LoginController {
             return "show_login";
         }
     }
+
+    @RequestMapping("/getOperationInfo")
+    public void getOperationInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+       // System.out.println("jinjin");
+        PrintWriter out = response.getWriter();
+        try {
+            String power = request.getSession().getAttribute("power").toString();
+            int account = Integer.parseInt(request.getSession().getAttribute("account").toString());
+            if (loginPageService.getOperationInfo(account, power)) {
+                out.print("havaOperationInfo");
+                //System.out.println("true true true"+account);
+            }else {
+                out.print("noOperationInfo");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.print("noOperationInfo");
+        }finally {
+            out.close();
+        }
+    }
+
+    @RequestMapping("/changeOperationInfo")
+    public void changeOperationInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        System.out.println("jinjin   change");
+        PrintWriter out = response.getWriter();
+        try {
+            String power = request.getSession().getAttribute("power").toString();
+            int account = Integer.parseInt(request.getSession().getAttribute("account").toString());
+            loginPageService.changeOperationInfo(account,power);
+        } catch (Exception e) {
+            e.printStackTrace();
+//            out.print("noOperationInfo");
+        }finally {
+            out.close();
+        }
+    }
+
 }

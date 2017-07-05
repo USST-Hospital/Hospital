@@ -93,7 +93,7 @@
                     <td>${ operation.showNurses }</td>
                     <td>${ operation.patient.name }</td>
 
-                    <td style="width:190px;"><a href="update_operation.do?operationId=${ operation.id }" type="button" class="btn btn-info" >修改手术</a>&nbsp;&nbsp;
+                    <td style="width:200px;"><a href="update_operation.do?operationId=${ operation.id }" type="button" class="btn btn-info" >修改手术</a>&nbsp;&nbsp;
                         <button type="button" class="btn btn-info" onclick="deleteOperation(${operation.id})">删除手术</button></td>
                 </tr>
             </c:forEach>

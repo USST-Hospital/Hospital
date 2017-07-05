@@ -51,6 +51,9 @@
                 <th>
                     号码
                 </th>
+                <th>
+                    操作
+                </th>
         
             </tr>
             <c:forEach var="patient" items="${ requestScope.patients }"> 
@@ -61,7 +64,7 @@
                 <td> <input  class="form-control" value="${ patient.age }" disabled></td>
                 <td> <input  class="form-control" value="${ patient.number }" disabled></td>
                
-                <td style="width: 130px;">  <button onclick="deletpatient(${patient.id})"  class="btn btn-info" id="del${ patient.id }">删除</button>&nbsp;&nbsp;
+                <td style="width: 150px;">  <button onclick="deletpatient(${patient.id})"  class="btn btn-info" id="del${ patient.id }">删除</button>&nbsp;&nbsp;
                        <button onclick="updatepatient(${patient.id})"  class="btn btn-info" id="updata${ patient.id }">修改</button>
                        <button onclick="savepatient(${patient.id})" style="display:none" class="btn btn-info" id="save${ patient.id }">保存</button>
                        

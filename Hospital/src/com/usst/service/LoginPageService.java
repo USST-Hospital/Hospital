@@ -8,4 +8,8 @@ public interface LoginPageService {
     public boolean login(String power, int account, String password);
 
     String getPersonText(int account, String power);
+
+    boolean getOperationInfo(int account, String power);
+
+    void changeOperationInfo(int account, String power);
 }

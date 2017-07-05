@@ -27,4 +27,8 @@ public interface OperationMapper {
     List<Operation> getHistory(Operation operation);
 
     List<Operation> getAllOperation();
+
+    List<Operation> getAnalgesistOperationInfo(int account);
+
+    void changeAnalgesistOperationInfo(int account);
 }

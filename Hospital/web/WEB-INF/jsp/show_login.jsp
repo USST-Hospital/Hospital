@@ -12,11 +12,38 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap-theme.min.css"/>
     <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.js"></script>
-    <script src="${pageContext.request.contextPath}/javascript/myJavaScript.js"></script>
+    <%--<script src="${pageContext.request.contextPath}/javascript/myJavaScript.js"></script>--%>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 
     <script>
+        $.getScript('http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&day=1&city=&dfc=1&charset=utf-8',
+            function (a) {
+                var s = "", r = "", q = "";
+                for (s in window.SWther.w) {
+                    q = SWther.w[s][0];
+                    r = {
+                        city: s,
+                        date: SWther.add.now.split(" ")[0] || "",
+                        day_weather: q.s1,
+                        night_weather: q.s2,
+                        day_temp: q.t1,
+                        night_temp: q.t2,
+                        day_wind: q.p1,
+                        night_wind: q.p2
+                    }
+                    $("#city").text(r.city);
+                    $("#temp").text(r.night_temp + '°C~' + r.day_temp + '°C');
+                    $("#weather").text(r.day_weather + '/' + r.night_weather);
+                    $("#date").text(r.date);
+                }
+            });
+
+
         $(document).ready(function () {
+            if(window.parent!=window) {
+                window.parent.location.href = '/Hospital/index.jsp';
+            }
+
             $('#login').click(function () {
                 var account = $('#account').val();
                 var password = $('#password').val();
@@ -47,13 +74,61 @@
 </head>
 <body>
 <%-- <iframe name="testIframe" style="width: 100%;height: 300px;"></iframe>sdfsdf--%>
-<a href="doctor/doctor.do">医生页面2</a><br>
-<a href="admin/admin.do">adminX</a>
 
 <body class="body">
 
 <div class="container">
-    <jsp:include page="common/top_menu.jsp"></jsp:include>
+
+
+    <%--<jsp:include page="common/top_menu.jsp"></jsp:include>--%>
+    <div class="row">
+        <div class="col-md-12 c" style="padding-top: 20px;">
+
+            <%--<div class="row" style="height: 20px"></div>--%>
+            <div class="row" style="text-align: center">
+
+                <div class="col-md-4 ">   </div>
+
+                <div class="col-md-4">
+                    <h1>
+                        <div class="label label-primary">Java Web</div>
+                    </h1>
+                    <!--#f0ad4e  -->
+                    <h1>手术排班系统</h1>
+                </div>
+                <div class="col-md-1"></div>
+
+
+                <div class="col-md-3  "
+                     style="margin-top: 30px;/*  background-color: white; */">
+                    <div>
+                        城市：<span id="city"></span>
+                    </div>
+                    <div>
+                        温度：<span id="temp"></span>
+                    </div>
+                    <div>
+                        天气：<span id="weather"></span>
+                    </div>
+                    <div>
+                        日期：<span id="date"></span>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-4 " style="padding-left: 50px;padding-bottom: 35px;">
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
     <div style="height: 100px;"></div>
     <div class="row">
         <div class="col-md-4"></div>

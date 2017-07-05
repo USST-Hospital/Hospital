@@ -19,6 +19,13 @@
     <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/javascript/myJavaScript.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+
+    <script>
+        $(document).ready(function () {
+            var main = $(window.parent.document).find("#operationInfo");
+            $.post("/Hospital/changeOperationInfo.do")
+        })
+    </script>
 </head>
 <body>
 

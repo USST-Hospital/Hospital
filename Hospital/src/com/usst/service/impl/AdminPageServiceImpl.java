@@ -210,10 +210,10 @@ public class AdminPageServiceImpl implements AdminPageService {
         return accountMapper.deleteByPrimaryKey(id);
     }
     public int delNurse(int id){
-        return nurseMapper.deleteByPrimaryKey(id);
+        return accountMapper.deleteByPrimaryKey(id);
     }
     public int delAnalgesist(int id){
-        return analgesistMapper.deleteByPrimaryKey(id);
+        return accountMapper.deleteByPrimaryKey(id);
     }
 //    public int delOperation(int id){
 //        return operationMapper.deleteByPrimaryKey(id);

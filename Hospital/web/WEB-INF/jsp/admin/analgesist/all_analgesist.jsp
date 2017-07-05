@@ -54,6 +54,9 @@
                 <th>
 		密码
                 </th>
+                <th>
+                    操作
+                </th>
 
             </tr>
             <c:forEach var="analgesist" items="${ requestScope.analgesists }"> 
@@ -64,7 +67,7 @@
                 <td> <input  class="form-control" value="${ analgesist.age }" disabled></td>
                 <td> <input  class="form-control" value="${ analgesist.number }" disabled></td>
                 <td> <input  class="form-control" value="${ analgesist.password }" disabled></td>
-                <td style="width: 130px;">  <button onclick="deletanalgesist(${analgesist.id})"  class="btn btn-info" id="del${ analgesist.id }">删除</button>&nbsp;&nbsp;
+                <td style="width: 150px;">  <button onclick="deletanalgesist(${analgesist.id})"  class="btn btn-info" id="del${ analgesist.id }">删除</button>&nbsp;&nbsp;
                        <button onclick="updateanalgesist(${analgesist.id})"  class="btn btn-info" id="updata${ analgesist.id }">修改</button>
                        <button onclick="saveanalgesist(${analgesist.id})" style="display:none" class="btn btn-info" id="save${ analgesist.id }">保存</button>
                        

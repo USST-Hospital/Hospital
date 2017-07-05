@@ -41,4 +41,12 @@
   <delete id="deleteByOperationId" parameterType="int">
     DELETE FROM nurse_schedule where operation_id=#{operationId}
   </delete>
+
+  <select id="getNurseOperationInfo" parameterType="int" resultMap="BaseResultMap">
+     SELECT * FROM nurse_schedule WHERE nurse_id=#{account} AND nurse_status=0
+  </select>
+
+  <update id="changeNurseOperationInfo" parameterType="int">
+    UPDATE nurse_schedule SET nurse_status=1 WHERE nurse_id=#{account}
+  </update>
 </mapper>

@@ -53,7 +53,7 @@ public class NursePageController {
     @RequestMapping("/history")
     public ModelAndView history(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("analgesist/schedule");
+        mav.setViewName("analgesist/history");
         int account = Integer.parseInt(request.getSession().getAttribute("account").toString());
         List<Operation> operations = nursePageService.getHistory(account);
         mav.addObject("operations", operations);

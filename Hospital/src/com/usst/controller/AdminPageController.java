@@ -375,7 +375,7 @@ public class AdminPageController {
         Patient patient=new Patient(Integer.parseInt(id), name, sex, Integer.parseInt(age), number);
         adminPageService.updatePatient(patient);
     }
-    @RequestMapping("/operationroom/adminUpdataOperationroom.do")
+    @RequestMapping("/operation_room/adminUpdataOperationroom.do")
     public void adminUpdataOperationroom(HttpServletResponse response,HttpServletRequest request){
         String id=request.getParameter("id");
         String location=request.getParameter("location");
@@ -411,11 +411,6 @@ public class AdminPageController {
         adminPageService.updateNurse(doc);
 
     }
-
-
-
-
-
 
 
 

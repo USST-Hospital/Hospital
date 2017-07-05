@@ -246,7 +246,7 @@
             ,nurse_schedule
         </if>
         <where>
-            <if test="#doctorId!=0">
+            <if test="doctorId!=0">
                 AND #{doctorId}=doctor_id
             </if>
             <if test="analgesistId!=0">
@@ -266,6 +266,14 @@
     <select id="getAllOperation" resultMap="allOperationInfo">
         SELECT * FROM operation
     </select>
+
+    <select id="getAnalgesistOperationInfo" resultMap="BaseResultMap" parameterType="int">
+        SELECT * FROM operation WHERE analgesist_id=#{account} AND analgesist_status=0
+    </select>
+
+    <update id="changeAnalgesistOperationInfo" parameterType="int">
+        UPDATE operation SET analgesist_status=1 WHERE analgesist_id=#{account}
+    </update>
 
 
 </mapper>

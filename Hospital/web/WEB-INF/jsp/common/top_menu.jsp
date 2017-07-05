@@ -43,7 +43,9 @@
         <div class="row">
             <div class="col-md-4 " style="padding-left: 50px;padding-bottom: 10px;">
                 <c:if test="${ sessionScope.personText!=null}">
-                    <span style="font-size: 17px;">欢迎您&nbsp;&nbsp;${ sessionScope.personText}</span>
+                    <span style="font-size: 17px;">欢迎您&nbsp;&nbsp;${ sessionScope.personText}</span><br>
+                    <span id="operationInfo" style="color: red;font-size: 17px;"></span>
+                    </span>
                 </c:if>
             </div>
         </div>

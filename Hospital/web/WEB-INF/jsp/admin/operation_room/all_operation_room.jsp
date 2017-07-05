@@ -42,6 +42,9 @@
                 <th>
                     手术室地址
                 </th>
+                <th>
+                    操作
+                </th>
               
 
             </tr>
@@ -50,7 +53,7 @@
                 <td> <input  class="form-control" value="${ operationroom.id }" disabled></td>
                 <td> <input  class="form-control" value="${ operationroom.location }" disabled></td>
                
-                <td style="width: 130px;">  <button onclick="deletoperationroom(${operationroom.id})"  class="btn btn-info" id="del${ operationroom.id }">删除</button>&nbsp;&nbsp;
+                <td style="width: 150px;">  <button onclick="deletoperationroom(${operationroom.id})"  class="btn btn-info" id="del${ operationroom.id }">删除</button>&nbsp;&nbsp;
                        <button onclick="updateoperationroom(${operationroom.id})"  class="btn btn-info" id="updata${ operationroom.id }">修改</button>
                        <button onclick="saveoperationroom(${operationroom.id})" style="display:none" class="btn btn-info" id="save${ operationroom.id }">保存</button>
                        

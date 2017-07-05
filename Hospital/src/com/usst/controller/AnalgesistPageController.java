@@ -48,7 +48,7 @@ public class AnalgesistPageController {
     @RequestMapping("/history")
     public ModelAndView history(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("analgesist/schedule");
+        mav.setViewName("analgesist/history");
         int account = Integer.parseInt(request.getSession().getAttribute("account").toString());
         List<Operation> operations = analgesistPageService.getHistory(account);
         System.out.println(operations.size());

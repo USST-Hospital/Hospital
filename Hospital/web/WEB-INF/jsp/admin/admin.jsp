@@ -15,6 +15,30 @@
     <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/javascript/myJavaScript.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+    <script>
+        $.getScript('http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&day=1&city=&dfc=1&charset=utf-8',
+            function (a) {
+                var s = "", r = "", q = "";
+                for (s in window.SWther.w) {
+                    q = SWther.w[s][0];
+                    r = {
+                        city: s,
+                        date: SWther.add.now.split(" ")[0] || "",
+                        day_weather: q.s1,
+                        night_weather: q.s2,
+                        day_temp: q.t1,
+                        night_temp: q.t2,
+                        day_wind: q.p1,
+                        night_wind: q.p2
+                    }
+                    $("#city").text(r.city);
+                    $("#temp").text(r.night_temp + '°C~' + r.day_temp + '°C');
+                    $("#weather").text(r.day_weather + '/' + r.night_weather);
+                    $("#date").text(r.date);
+                }
+            });
+    </script>
+
 
     <script>
         $(document).ready(function () {
@@ -88,17 +112,18 @@
 
 
     <div class="row">
-        <div class="col-md-12 " >
-            <div >
+        <div class="col-md-12 ">
+            <div>
 
                 <ul class="nav nav-pills ">
                     <li><a href="doctor/all_doctor.do" id="doctorMenu" target="adminIframe">医生信息管理</a></li>
                     <li><a href="nurse/all_nurse.do" id="nurseMenu" target="adminIframe">护士信息管理</a></li>
                     <li><a href="analgesist/all_analgesist.do" id="analgesistMenu" target="adminIframe">麻醉师信息管理</a></li>
-                    <li><a href="operation_room/all_operation_room.do" id="operationRoomMenu" target="adminIframe">手术室管理</a></li>
+                    <li><a href="operation_room/all_operation_room.do" id="operationRoomMenu"
+                           target="adminIframe">手术室管理</a></li>
                     <li><a href="operation/all_operation.do" id="operationMenu" target="adminIframe">手术管理</a></li>
                     <li><a href="patient/all_patient.do" id="patientMenu" target="adminIframe">病人管理</a></li>
-                    <li><a href="${pageContext.request.contextPath}/logout.do" >退出登录</a></li>
+                    <li><a href="${pageContext.request.contextPath}/logout.do">退出登录</a></li>
                 </ul>
             </div>
 
@@ -106,40 +131,38 @@
     </div>
 
     <div class="row" id="adminDoctor">
-        <div class="col-md-12 " >
-            <div >
+        <div class="col-md-12 ">
+            <div>
 
                 <ul class="nav nav-pills">
-                    <li><a href="doctor/all_doctor.do" target="adminIframe" >查看医生信息</a></li>
-                    <li><a href="doctor/add_doctor.do" target="adminIframe" >添加医生</a></li>
-                 <!--    <li><a href="admin/appointment.do" target="adminIframe" >手术预约</a></li>
-                    <li><a href="admin/search_patient.do" target="adminIframe" >查看病人信息</a></li>
-                    <li><a href="admin/history.do" target="adminIframe">手术历史</a></li> -->
+                    <li><a href="doctor/all_doctor.do" target="adminIframe">查看医生信息</a></li>
+                    <li><a href="doctor/add_doctor.do" target="adminIframe">添加医生</a></li>
+                    <!--    <li><a href="admin/appointment.do" target="adminIframe" >手术预约</a></li>
+                       <li><a href="admin/search_patient.do" target="adminIframe" >查看病人信息</a></li>
+                       <li><a href="admin/history.do" target="adminIframe">手术历史</a></li> -->
                 </ul>
             </div>
         </div>
     </div>
-      <div class="row" id="adminPatient" style="display: none;">
-        <div class="col-md-12 " >
-            <div >
+    <div class="row" id="adminPatient" style="display: none;">
+        <div class="col-md-12 ">
+            <div>
 
                 <ul class="nav nav-pills">
-                    <li><a href="patient/all_patient.do" target="adminIframe" >查看病人信息</a></li>
-                    <li><a href="patient/add_patient.do" target="adminIframe" >添加病人</a></li>
-                 <!--    <li><a href="admin/appointment.do" target="adminIframe" >手术预约</a></li>
-                    <li><a href="admin/search_patient.do" target="adminIframe" >查看病人信息</a></li>
-                    <li><a href="admin/history.do" target="adminIframe">手术历史</a></li> -->
+                    <li><a href="patient/all_patient.do" target="adminIframe">查看病人信息</a></li>
+                    <li><a href="patient/add_patient.do" target="adminIframe">添加病人</a></li>
+                    <!--    <li><a href="admin/appointment.do" target="adminIframe" >手术预约</a></li>
+                       <li><a href="admin/search_patient.do" target="adminIframe" >查看病人信息</a></li>
+                       <li><a href="admin/history.do" target="adminIframe">手术历史</a></li> -->
                 </ul>
             </div>
         </div>
     </div>
-    
-
 
 
     <div class="row" id="adminNurse" style="display: none;">
-        <div class="col-md-12 " >
-            <div >
+        <div class="col-md-12 ">
+            <div>
 
                 <ul class="nav nav-tabs ">
                     <li><a href="nurse/all_nurse.do" target="adminIframe">查看护士信息</a></li>
@@ -154,15 +177,15 @@
 
 
     <div class="row" id="adminAnalgesist" style="display: none;">
-        <div class="col-md-12 " >
-            <div >
+        <div class="col-md-12 ">
+            <div>
 
                 <ul class="nav nav-tabs ">
                     <li><a href="analgesist/all_analgesist.do" target="adminIframe">查看麻醉师信息</a></li>
                     <li><a href="analgesist/add_analgesist.do" target="adminIframe">添加麻醉师</a></li>
-                  <!--   <li><a href="admin/appointment.do" target="adminIframe">手术预约</a></li>
-                    <li><a href="admin/search_patient.do" target="adminIframe">查看病人信息</a></li>
-                    <li><a href="admin/history.do" target="adminIframe">手术历史</a></li> -->
+                    <!--   <li><a href="admin/appointment.do" target="adminIframe">手术预约</a></li>
+                      <li><a href="admin/search_patient.do" target="adminIframe">查看病人信息</a></li>
+                      <li><a href="admin/history.do" target="adminIframe">手术历史</a></li> -->
                 </ul>
             </div>
         </div>
@@ -170,15 +193,15 @@
 
 
     <div class="row" id="adminOperation" style="display: none;">
-        <div class="col-md-12 " >
-            <div >
+        <div class="col-md-12 ">
+            <div>
 
                 <ul class="nav nav-tabs ">
                     <li><a href="operation/all_operation.do" target="adminIframe">查看手术信息</a></li>
                     <li><a href="operation/add_operation.do" target="adminIframe">添加手术信息</a></li>
-                   <!--  <li><a href="admin/appointment.do" target="adminIframe">手术预约</a></li>
-                    <li><a href="admin/search_patient.do" target="adminIframe">查看病人信息</a></li>
-                    <li><a href="admin/history.do" target="adminIframe">手术历史</a></li> -->
+                    <!--  <li><a href="admin/appointment.do" target="adminIframe">手术预约</a></li>
+                     <li><a href="admin/search_patient.do" target="adminIframe">查看病人信息</a></li>
+                     <li><a href="admin/history.do" target="adminIframe">手术历史</a></li> -->
                 </ul>
             </div>
         </div>
@@ -186,8 +209,8 @@
 
 
     <div class="row" id="adminOperationRoom" style="display: none;">
-        <div class="col-md-12 " >
-            <div >
+        <div class="col-md-12 ">
+            <div>
 
                 <ul class="nav nav-tabs ">
                     <li><a href="operation_room/all_operation_room.do" target="adminIframe">查看手术室信息</a></li>
@@ -201,12 +224,10 @@
     </div>
 
 
-
-
     <div class="row">
         <div class="col-md-12">
 
-            <iframe id="myIframe" class="myContent" src="doctor/all_doctor.do" name="adminIframe" >
+            <iframe id="myIframe" class="myContent" src="doctor/all_doctor.do" name="adminIframe">
 
 
             </iframe>
