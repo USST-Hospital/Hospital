@@ -391,7 +391,7 @@ public class AdminPageController {
         String age=request.getParameter("age");
         String number=request.getParameter("number");
         String password=request.getParameter("password");
-        Account acc=new Account(Integer.parseInt(id),password,"analgesist");
+        Account acc=new Account(Integer.parseInt(id),password,"nurse");
         Analgesist doc=new Analgesist(Integer.parseInt(id), name, sex, Integer.parseInt(age), number,password);
         adminPageService.updateAccount(acc);
         adminPageService.updateAnalgesist(doc);

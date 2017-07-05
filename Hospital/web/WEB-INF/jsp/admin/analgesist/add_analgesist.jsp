@@ -45,14 +45,14 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">麻醉师工号</label>
                     <div class="col-sm-9">
-                        <input class="form-control" id="id" placeholder="id" onblur="Isnumber(this)"> <label ></label>
+                        <input class="form-control" id="id" placeholder="id">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">姓名</label>
                     <div class="col-sm-9">
-                        <input class="form-control" id="name" placeholder="name" onblur="Isnumber(this)"> <label ></label>
+                        <input class="form-control" id="name" placeholder="name">
                     </div>
                 </div>
 
@@ -60,28 +60,28 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">性别</label>
                     <div class="col-sm-9">
-                        <input class="form-control" id="sex" placeholder="sex" onblur="Isnull(this)"> <label ></label>
+                        <input class="form-control" id="sex" placeholder="sex">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">年龄</label>
                     <div class="col-sm-9">
-                        <input class="form-control" id="age" placeholder="age" onblur="Isnumber(this)"> <label ></label>
+                        <input class="form-control" id="age" placeholder="age">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">号码</label>
                     <div class="col-sm-9">
-                        <input class="form-control" id="number" placeholder="number" onblur="Isnumber(this)"> <label ></label>
+                        <input class="form-control" id="number" placeholder="number">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">密码</label>
                     <div class="col-sm-9">
-                        <input class="form-control" id="password" placeholder="password" onblur="Isnull(this)"> <label ></label>
+                        <input class="form-control" id="password" placeholder="password">
                     </div>
                 </div>
 
