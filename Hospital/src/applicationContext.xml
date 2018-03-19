@@ -44,7 +44,7 @@
         <property name="url"
                   value="jdbc:mysql://localhost:3306/hospital?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"></property>
         <property name="username" value="root"></property>
-        <property name="password" value="gxblxzy199511"></property>
+        <property name="password" value="root"></property>
         <!-- 初始化连接大小 -->
         <property name="initialSize" value="0"></property>
         <!-- 连接池最大数量 -->
