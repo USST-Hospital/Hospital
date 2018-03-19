@@ -5,7 +5,7 @@ package com.usst.service;
  */
 public interface LoginPageService {
 
-    public boolean login(String power, int account, String password);
+    boolean login(String power, int account, String password);
 
     String getPersonText(int account, String power);
 

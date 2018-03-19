@@ -331,7 +331,7 @@ public class AdminPageController {
         adminPageService.delPatient(Integer.parseInt(id));
     }
 
-    @RequestMapping("/operationroom/adminDelOperationroom.do")
+    @RequestMapping("/operation_room/adminDelOperationroom.do")
     public void adminDelOperationroom(HttpServletResponse response,HttpServletRequest request){
         String id=request.getParameter("id");
         //adminPageService.delDoctor(Integer.parseInt(id));

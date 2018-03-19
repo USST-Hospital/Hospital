@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap-theme.min.css"/>
     <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.js"></script>
-    <script src="${pageContext.request.contextPath}/javascript/myJavaScript.js"></script>
+    <%--<script src="${pageContext.request.contextPath}/javascript/myJavaScript.js"></script>--%>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
     <script>
         $.getScript('http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&day=1&city=&dfc=1&charset=utf-8',

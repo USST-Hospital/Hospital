@@ -3,7 +3,7 @@
 
 
 <hr style="height:1px;border-top:1px solid #555555; margin-top: 90px; margin-bottom: 50px;"/>
-<p align="center"> 关于我们|联系我<br>
+<p align="center"> 关于我们|联系我们<br>
     <aa style="font-size: 20px;color: blue;">
 
             java 学习

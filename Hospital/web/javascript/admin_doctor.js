@@ -1,7 +1,7 @@
 var yesPicture = '<img width="30px;" src="/Hospital/image/yes.png">';
 var noPicture = '<img width="30px;" src="/Hospital/image/no.png">';
-var isPassPatientName=false;
-var isPassTime=false;
+var isPassPatientName = false;
+var isPassTime = false;
 
 var year;
 var month;
@@ -34,22 +34,39 @@ $.getScript('http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&day=1&
 
 
 $(document).ready(function () {
-    $('#patientId').change(function () {
-        isPassPatientName=false;
+    $('#patientId').bind('input porpertychange', function () {
+        isPassPatientName = false;
         var patientId = $('#patientId').val();
         if (!isNaN(patientId)) {
             $.post("appointmentGetPatientName.do", {'patientId': patientId}, function (data, status) {
-                if(data!='findNamefailure') {
-                    $('#patientName').html(data+yesPicture);
-                    isPassPatientName=true;
-                }else {
-                    $('#patientName').html('不存在此病人id'+noPicture);
+                if (data != 'findNamefailure') {
+                    $('#patientName').html(data + yesPicture);
+                    isPassPatientName = true;
+                } else {
+                    $('#patientName').html('不存在此病人id' + noPicture);
                 }
             })
         } else {
-            $('#patientName').html('请输入数字'+noPicture);
+            $('#patientName').html('请输入数字' + noPicture);
         }
-    })
+    });
+
+    // $('#patientId').change(function () {
+    //     isPassPatientName = false;
+    //     var patientId = $('#patientId').val();
+    //     if (!isNaN(patientId)) {
+    //         $.post("appointmentGetPatientName.do", {'patientId': patientId}, function (data, status) {
+    //             if (data != 'findNamefailure') {
+    //                 $('#patientName').html(data + yesPicture);
+    //                 isPassPatientName = true;
+    //             } else {
+    //                 $('#patientName').html('不存在此病人id' + noPicture);
+    //             }
+    //         })
+    //     } else {
+    //         $('#patientName').html('请输入数字' + noPicture);
+    //     }
+    // });
 
     $('#startTime').change(timeChange);
     $('#year').change(timeChange);
@@ -58,14 +75,14 @@ $(document).ready(function () {
     $('#endTime').change(timeChange);
 
     $('#chooseNurse').click(function () {
-        var nurseId=$('#nurse').val();
-        var nuresText = $('#nurse [value='+nurseId+']').text();
-        if(nurseId==-1) {
+        var nurseId = $('#nurse').val();
+        var nuresText = $('#nurse [value=' + nurseId + ']').text();
+        if (nurseId == -1) {
             alert('你还没选择护士！');
-        }else if($('#nurses [chooseNurseId=' + nurseId + ']').length>=1){
+        } else if ($('#nurses [chooseNurseId=' + nurseId + ']').length >= 1) {
             alert('你已经选择了该护士！');
-        }else {
-            var string = '<div style="font-size:15px; margin: 2px;" chooseNurseId='+nurseId+'>'+nuresText+'   <button onclick="removeNurse('+nurseId+')" type="button" class="btn btn-info btn-sm">删除</button></div> ';
+        } else {
+            var string = '<div style="font-size:15px; margin: 2px;" chooseNurseId=' + nurseId + '>' + nuresText + '   <button onclick="removeNurse(' + nurseId + ')" type="button" class="btn btn-info btn-sm">删除</button></div> ';
             $('#nurses').append(string);
         }
     })
@@ -79,7 +96,7 @@ $(document).ready(function () {
         var nurses = $('#nurses div');
         var doctor = $('#adminDoctor').val();
 
-        if(isPassPatientName&&year!=-1&&month!=-1&&day!=-1&&startTime!=-1&&endTime!=-1&&nurses.length>0&&operationRoom!=-1&&analgesist!=-1&&operationName!=''&&doctor!='') {
+        if (isPassPatientName && year != -1 && month != -1 && day != -1 && startTime != -1 && endTime != -1 && nurses.length > 0 && operationRoom != -1 && analgesist != -1 && operationName != '' && doctor != '') {
             // alert('appointment!');
             var info = new Object();
             var array = new Array();
@@ -88,76 +105,79 @@ $(document).ready(function () {
                 array.push($(this).attr('chooseNurseId'));
             })
 
-            info.operationName=operationName;
-            info.doctor=doctor;
-            info.patient=patient;
-            info.date=year+'年'+month+'月'+day+'日';
-            info.startTime=startTime;
-            info.endTime=endTime;
-            info.operationRoom=operationRoom;
-            info.analgesist=analgesist;
-            info.nurses=array;
+            info.operationName = operationName;
+            info.doctor = doctor;
+            info.patient = patient;
+            info.date = year + '年' + month + '月' + day + '日';
+            info.startTime = startTime;
+            info.endTime = endTime;
+            info.operationRoom = operationRoom;
+            info.analgesist = analgesist;
+            info.nurses = array;
 
-            $.post("appointmentSubmit.do",{'info':JSON.stringify(info)},function (data,status) {
-                if(data=='success'&&status=='success') {
+            $.post("appointmentSubmit.do", {'info': JSON.stringify(info)}, function (data, status) {
+                if (data == 'success' && status == 'success') {
                     alert('手术预约成功！');
                     window.location.reload();
-                }else{
+                } else {
                     alert('预约失败！');
                 }
             })
-        }else {
+        } else {
             alert('请填好完整信息！');
         }
     })
 });
 
 
-
 function timeChange() {
 
-    year=$('#year').val();
-    month=$('#month').val();
-    day=$('#day').val();
-    startTime=$('#startTime').val();
-    endTime=$('#endTime').val();
-    isPassTime=false;
+    year = $('#year').val();
+    month = $('#month').val();
+    day = $('#day').val();
+    startTime = $('#startTime').val();
+    endTime = $('#endTime').val();
+    isPassTime = false;
 
-    if(year==-1||month==-1||day==-1||startTime==-1||endTime==-1){
-        $('#endTimeNotice').html('请选择完整时间'+noPicture);
+    if (year == -1 || month == -1 || day == -1 || startTime == -1 || endTime == -1) {
+        $('#endTimeNotice').html('请选择完整时间' + noPicture);
         timeChangeReset();
-    }else if(Number(endTime)<=Number(startTime)){
-        $('#endTimeNotice').html('时间选择错误'+noPicture);
+    } else if (Number(endTime) <= Number(startTime)) {
+        $('#endTimeNotice').html('时间选择错误' + noPicture);
         timeChangeReset();
-    }else {
+    } else {
         $('#endTimeNotice').html(yesPicture);
         appointmentTimeChange();
     }
 }
 
 function appointmentTimeChange() {
-    $.post("appointmentTimeChange.do",{'date':year+'年'+month+'月'+day+'日','startTime':startTime,'endTime':endTime},function (data,status) {
-        if(data!='failure'&&status=='success') {
+    $.post("appointmentTimeChange.do", {
+        'date': year + '年' + month + '月' + day + '日',
+        'startTime': startTime,
+        'endTime': endTime
+    }, function (data, status) {
+        if (data != 'failure' && status == 'success') {
             var dataObj = eval("(" + data + ")");
-            var operatioinString =  '<option value="-1">请选择</option>';
-            var analgesistString =  '<option value="-1">请选择</option>';
-            var nurseString =  '<option value="-1">请选择</option>';
+            var operatioinString = '<option value="-1">请选择</option>';
+            var analgesistString = '<option value="-1">请选择</option>';
+            var nurseString = '<option value="-1">请选择</option>';
             var doctorString = '<option value="-1">请选择</option>';
 
             for (var i = 0; i < dataObj.operationRooms.length; i++) {
-                operatioinString = operatioinString +'<option value="'+dataObj.operationRooms[i].id+'">'+dataObj.operationRooms[i].id+'&nbsp;'+dataObj.operationRooms[i].location+'</option>';
+                operatioinString = operatioinString + '<option value="' + dataObj.operationRooms[i].id + '">' + dataObj.operationRooms[i].id + '&nbsp;' + dataObj.operationRooms[i].location + '</option>';
             }
 
             for (var i = 0; i < dataObj.analgesists.length; i++) {
-                analgesistString = analgesistString +'<option value="'+dataObj.analgesists[i].id+'">'+dataObj.analgesists[i].id+'&nbsp;'+dataObj.analgesists[i].name+'</option>';
+                analgesistString = analgesistString + '<option value="' + dataObj.analgesists[i].id + '">' + dataObj.analgesists[i].id + '&nbsp;' + dataObj.analgesists[i].name + '</option>';
             }
 
             for (var i = 0; i < dataObj.nurses.length; i++) {
-                nurseString = nurseString +'<option value="'+dataObj.nurses[i].id+'">'+dataObj.nurses[i].id+'&nbsp;'+dataObj.nurses[i].name+'</option>';
+                nurseString = nurseString + '<option value="' + dataObj.nurses[i].id + '">' + dataObj.nurses[i].id + '&nbsp;' + dataObj.nurses[i].name + '</option>';
             }
 
             for (var i = 0; i < dataObj.doctors.length; i++) {
-                doctorString = doctorString +'<option value="'+dataObj.doctors[i].id+'">'+dataObj.doctors[i].id+'&nbsp;'+dataObj.doctors[i].name+'</option>';
+                doctorString = doctorString + '<option value="' + dataObj.doctors[i].id + '">' + dataObj.doctors[i].id + '&nbsp;' + dataObj.doctors[i].name + '</option>';
             }
 
 

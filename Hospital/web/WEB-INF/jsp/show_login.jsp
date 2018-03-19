@@ -75,7 +75,7 @@
 <body>
 <%-- <iframe name="testIframe" style="width: 100%;height: 300px;"></iframe>sdfsdf--%>
 
-<body class="body">
+<body <%-- background="${pageContext.request.contextPath}/image/background.png"--%>>
 
 <div class="container">
 
@@ -119,8 +119,8 @@
 
 
             <div class="row">
-                <div class="col-md-4 " style="padding-left: 50px;padding-bottom: 35px;">
-
+                <div class="col-md-4 " style="padding-left: 50px;padding-bottom: 15px;">
+                    <span id="operationInfo" style="font-size: 17px;">请登录</span>
                 </div>
             </div>
 
@@ -129,7 +129,7 @@
     </div>
 
 
-    <div style="height: 100px;"></div>
+    <div style="height: 130px;"></div>
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4" style="text-align: center;">
@@ -156,7 +156,7 @@
 
 </div>
 
-<div style="height: 100px;"></div>
+<div style="height: 130px;"></div>
 <jsp:include page="common/footer.jsp"></jsp:include>
 
 

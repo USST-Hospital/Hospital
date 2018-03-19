@@ -39,6 +39,7 @@
                 }
             });
     </script>
+
     <title>Analgesist</title>
 
 </head>
@@ -62,7 +63,7 @@
                     <li><a href="schedule.do" target="doctorIframe">查看手术排班</a></li>
                     <%--<li><a href="appointment.do" target="doctorIframe">手术预约</a></li>--%>
                     <li><a href="history.do" target="doctorIframe">手术历史</a></li>
-                    <li><a href="${pageContext.request.contextPath}/logout.do" >退出登录</a></li>
+                    <li><a href="${pageContext.request.contextPath}/logout.do">退出登录</a></li>
                 </ul>
             </div>
 

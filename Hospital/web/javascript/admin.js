@@ -349,7 +349,8 @@ function deletoperationroom(id) {
                 url: "adminDelOperationroom.do",
                 data: {id: id},
                 success: function (data) {
-                    self.location = 'all_operationroom.do'
+                    window.location.href = 'all_operation_room.do';
+
                 },
                 error: function () {
                     alert("error")

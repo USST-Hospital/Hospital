@@ -67,20 +67,17 @@ public class LoginController {
     @RequestMapping("/getOperationInfo")
     public void getOperationInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-       // System.out.println("jinjin");
         PrintWriter out = response.getWriter();
         try {
             String power = request.getSession().getAttribute("power").toString();
             int account = Integer.parseInt(request.getSession().getAttribute("account").toString());
             if (loginPageService.getOperationInfo(account, power)) {
                 out.print("havaOperationInfo");
-                //System.out.println("true true true"+account);
             }else {
                 out.print("noOperationInfo");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            out.print("noOperationInfo");
         }finally {
             out.close();
         }
@@ -89,7 +86,6 @@ public class LoginController {
     @RequestMapping("/changeOperationInfo")
     public void changeOperationInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        System.out.println("jinjin   change");
         PrintWriter out = response.getWriter();
         try {
             String power = request.getSession().getAttribute("power").toString();
@@ -97,10 +93,8 @@ public class LoginController {
             loginPageService.changeOperationInfo(account,power);
         } catch (Exception e) {
             e.printStackTrace();
-//            out.print("noOperationInfo");
         }finally {
             out.close();
         }
     }
-
 }

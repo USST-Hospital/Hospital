@@ -71,7 +71,6 @@
             </c:forEach>
 
         </table>
-        <button type="button" class="btn btn-info">返回</button>
     </div>
 </div>
 

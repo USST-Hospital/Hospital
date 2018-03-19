@@ -6,6 +6,18 @@ public class Operation {
 
     private int nurseId;
 
+    public String getShowStatus() {
+        showStatus = "";
+        if (status == 0) {
+            showStatus = "未完成";
+        }else {
+            showStatus = "已完成";
+        }
+        return showStatus;
+    }
+
+    private String showStatus;
+
     public int getNurseId() {
         return nurseId;
     }

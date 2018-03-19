@@ -79,6 +79,9 @@
                     病人
                 </th>
                 <th>
+                    状态
+                </th>
+                <th>
                     操作
                 </th>
             </tr>
@@ -92,7 +95,7 @@
                     <td>${ operation.analgesist.name }</td>
                     <td>${ operation.showNurses }</td>
                     <td>${ operation.patient.name }</td>
-
+                    <td>${ operation.showStatus }</td>
                     <td style="width:200px;"><a href="update_operation.do?operationId=${ operation.id }" type="button" class="btn btn-info" >修改手术</a>&nbsp;&nbsp;
                         <button type="button" class="btn btn-info" onclick="deleteOperation(${operation.id})">删除手术</button></td>
                 </tr>
